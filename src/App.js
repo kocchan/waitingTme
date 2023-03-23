@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+function LoadingScreen() {
+  const [loading, setLoading] = useState(true);
+  const [time, setTime] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      setTime(new Date().toLocaleString());
+    }, 3000);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading ? <div>ローディング中...</div> : <div>ローディング完了: {time}</div>}
+    </>
   );
 }
 
